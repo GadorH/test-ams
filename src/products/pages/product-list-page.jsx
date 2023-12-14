@@ -1,22 +1,45 @@
-import { useState, useEffect } from "react";
-import { ProductList } from "../components/product-list";
-import { getAllProductsService } from "../services/product-services";
+import React, { useEffect, useState } from 'react';
+import useProducts from '../hooks/useProducts';
+import { ProductList } from '../components/product-list';
+import '../../index.css';
 
 export const ProductListPage = () => {
-    const [products, setProducts] = useState([]);
-
-    const retrieveAll = async () => {
-        const products = await getAllProductsService();
-        setProducts(products);
-    };
+    const { retrieveAll, products } = useProducts();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
         retrieveAll();
     }, []);
 
+    useEffect(() => {
+        const filtered = products.filter(
+            (product) =>
+                product.brand
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                product.model.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+    }, [searchTerm, products]);
+
+    const handleSearch = (event) => {
+        const { value } = event.target;
+        setSearchTerm(value);
+    };
+
     return (
         <>
-            <ProductList products={products} />
+            <div className="search-bar">
+                <input
+                    type="text"
+                    placeholder="Buscar"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    className="search-input"
+                />
+            </div>
+            <ProductList products={searchTerm ? filteredProducts : products} />
         </>
     );
 };

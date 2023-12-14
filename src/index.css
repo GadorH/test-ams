@@ -1,3 +1,58 @@
 html {
     height: 100vh;
 }
+
+.search-bar {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    outline: none;
+}
+
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.item-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.item-price {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+@media screen and (min-width: 600px) {
+    .item-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .item-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    .search-input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
+        outline: none;
+    }
+}
