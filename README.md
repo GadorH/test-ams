@@ -39,7 +39,7 @@ Asimismo, se incorpora un enlace intuitivo que permite al usuario regresar fáci
 
 Para la realización de este proyecto se ha mantenido una metodología de trabajo utilizando la herramienta de control de verisones Git, para gestionar las actualizaciones y los commits realizados durante el desarrollo del proyecto. Esto permitió mantener un seguimiento preciso de los cambios.
 
-Una de las prácticas clave fue el uso de convenciones de commits, específicamente los Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Esta convención me ayudó a mantener un historial de commits consistente y bien estructurado, facilitando la comprensión de los cambios realizados en el proyecto.
+Una de las prácticas clave fue el uso de conventionals commits, específicamente los Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Esta convención me ayudó a mantener un historial de commits consistente y bien estructurado, facilitando la comprensión de los cambios realizados en el proyecto.
 
 ## Autor 🖋
 

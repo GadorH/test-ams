@@ -4,28 +4,18 @@ import { ProductList } from '../components/product-list';
 import '../../index.css';
 
 export const ProductListPage = () => {
-    const { retrieveAll, products } = useProducts();
+    const { retrieveAll, filterProducts } = useProducts();
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
         retrieveAll();
     }, []);
 
-    useEffect(() => {
-        const filtered = products.filter(
-            (product) =>
-                product.brand
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ||
-                product.model.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredProducts(filtered);
-    }, [searchTerm, products]);
-
     const handleSearch = (event) => {
         const { value } = event.target;
-        setSearchTerm(value);
+        const searchTerm = value.toLowerCase().trim();
+
+        setSearchTerm(searchTerm);
     };
 
     return (
@@ -39,7 +29,12 @@ export const ProductListPage = () => {
                     className="search-input"
                 />
             </div>
-            <ProductList products={searchTerm ? filteredProducts : products} />
+            <ProductList
+                products={filterProducts({
+                    brand: searchTerm,
+                    model: searchTerm,
+                })}
+            />
         </>
     );
 };

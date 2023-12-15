@@ -16,3 +16,20 @@ export const getAllProductsService = async () => {
 
     return body;
 };
+
+export const getProductDetailsService = async (productId) => {
+    let body;
+
+    try {
+        const res = await fetch(`${baseURL}/${productId}`);
+        body = await res.json();
+
+        if (res.status !== 200) {
+            throw new Error(body.message);
+        }
+    } catch (error) {
+        throw error;
+    }
+
+    return body;
+};
