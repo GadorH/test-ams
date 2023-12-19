@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import '../../index.css';
 import { Link } from 'react-router-dom';
+import './product-list.css';
 
 export const ProductList = (props) => {
     const { products } = props;
@@ -8,7 +8,7 @@ export const ProductList = (props) => {
     return (
         <div className="item-container">
             {products.map((product) => (
-                <Link to={`details/${product.id}`} key={product.id}>
+                <Link to={`${product.id}`} key={product.id}>
                     <div key={product.id} className="item-card">
                         <img
                             loading="lazy"
@@ -17,11 +17,11 @@ export const ProductList = (props) => {
                         />
                         <p>{product.brand}</p>
                         <p>{product.model}</p>
-                        {product.price ? (
-                            <p className="item-price">{product.price} €</p>
-                        ) : (
-                            <p className="item-price">No disponible</p>
-                        )}
+                        <p className="item-price">
+                            {product?.price
+                                ? `${product.price} €`
+                                : 'No Disponible'}
+                        </p>
                     </div>
                 </Link>
             ))}

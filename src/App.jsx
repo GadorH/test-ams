@@ -1,18 +1,27 @@
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
-import { ProductListPage } from './product-list/pages/product-list-page';
-import { ProductDetailsPage } from './product-details/pages/product-details-page';
+import { CartProvider } from './smartphones/ui/context/cart-provider';
+import { ProductListPage } from './smartphones/ui/pages/plp/product-list-page';
+import { ProductDetailsPage } from './smartphones/ui/pages/pdp/product-details-page';
+import { SmartphonesProvider } from './smartphones/ui/context/smartphones-provider.jsx';
 
 export const App = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Navigate to="/products" replace />} />
-                <Route path="/products" element={<ProductListPage />} />
-                <Route
-                    path="/products/details/:productId"
-                    element={<ProductDetailsPage />}
-                />
-            </Routes>
-        </BrowserRouter>
+        <CartProvider>
+            <BrowserRouter>
+                <SmartphonesProvider>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Navigate to="/smartphones" replace />}
+                        />
+                        <Route path="/smartphones" element={<ProductListPage />} />
+                        <Route
+                            path="/smartphones/:productId"
+                            element={<ProductDetailsPage />}
+                        />
+                    </Routes>
+                </SmartphonesProvider>
+            </BrowserRouter>
+        </CartProvider>
     );
 };
