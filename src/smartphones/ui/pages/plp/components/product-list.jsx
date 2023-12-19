@@ -8,16 +8,28 @@ export const ProductList = (props) => {
     return (
         <div className="item-container">
             {products.map((product) => (
-                <Link to={`${product.id}`} key={product.id}>
+                <Link
+                    to={`${product.id}`}
+                    key={product.id}
+                    data-cy-id={product.id}
+                >
                     <div key={product.id} className="item-card">
                         <img
                             loading="lazy"
                             src={product.imgUrl}
                             alt={`Imagen de ${product.model}`}
+                            data-cy-id={`${product.id}-img`}
                         />
-                        <p>{product.brand}</p>
-                        <p>{product.model}</p>
-                        <p className="item-price">
+                        <p data-cy-id={`${product.id}-brand`}>
+                            {product.brand}
+                        </p>
+                        <p data-cy-id={`${product.id}-model`}>
+                            {product.model}
+                        </p>
+                        <p
+                            data-cy-id={`${product.id}-price`}
+                            className="item-price"
+                        >
                             {product?.price
                                 ? `${product.price} €`
                                 : 'No Disponible'}

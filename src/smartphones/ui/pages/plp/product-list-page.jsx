@@ -28,6 +28,7 @@ export const ProductListPage = () => {
                         <div className="search-bar">
                             <input
                                 type="text"
+                                data-cy-id="search-input"
                                 placeholder="Buscar"
                                 value={state.searchTerm}
                                 onChange={actions.handleSearch}

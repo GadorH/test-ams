@@ -41,7 +41,11 @@ export const Header = () => {
             </div>
 
             <div className="header__row-breadcrumb">
-                <nav aria-label="Breadcrumb" className="header__breadcrumb">
+                <nav
+                    aria-label="Breadcrumb"
+                    className="header__breadcrumb"
+                    data-cy-id="breadcrumb"
+                >
                     <ol>
                         <li>
                             <Link
