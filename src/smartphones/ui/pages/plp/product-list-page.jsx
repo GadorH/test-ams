@@ -1,54 +1,53 @@
-import { useEffect, useMemo, useState } from 'react';
-
-import { useSmartphonesProvider } from '../../context/smartphones-provider.jsx';
+import { STATUS_TYPES } from '../../context/smartphones-provider.jsx';
 import { Header } from '../../components/header';
+import LoadingGif from '../../assets/loading.gif';
+import NotFoundImage from '../../assets/no-product.png';
 import { ProductList } from './components/product-list';
+import { useProductListPage } from './use-product-list-page.jsx';
+
 import './product-list-page.css';
 
 export const ProductListPage = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const { smartphones, retrieveAll } = useSmartphonesProvider();
-    const smartphonesToShow = useMemo(() => {
-        return smartphones.filter((smartphone) => {
-            const brand = smartphone.brand.toLowerCase();
-            const model = smartphone.model.toLowerCase();
-            const searchTermInBrand = brand.includes(searchTerm);
-            const searchTermInModel = model.includes(searchTerm);
-
-            return searchTermInBrand || searchTermInModel;
-        });
-    }, [searchTerm, smartphones]);
-
-    useEffect(() => {
-        const { abort } = retrieveAll();
-
-        return () => {
-            abort();
-        };
-    }, [retrieveAll]);
-
-    const handleSearch = (event) => {
-        const { value } = event.target;
-        const searchTerm = value.toLowerCase();
-
-        setSearchTerm(searchTerm);
-    };
+    const { state, actions } = useProductListPage();
 
     return (
         <>
             <Header />
             <main>
-                <div className="search-bar">
-                    <input
-                        type="text"
-                        placeholder="Buscar"
-                        value={searchTerm}
-                        onChange={handleSearch}
-                        className="search-input"
-                    />
-                </div>
+                {state.status === STATUS_TYPES.FETCHING ? (
+                    <div className="loader">
+                        <img
+                            className="loader__image"
+                            src={LoadingGif}
+                            role="presentation"
+                        />
+                        <p>Estamos obteniendo los patos, digo los datos...</p>
+                    </div>
+                ) : (
+                    <>
+                        <div className="search-bar">
+                            <input
+                                type="text"
+                                placeholder="Buscar"
+                                value={state.searchTerm}
+                                onChange={actions.handleSearch}
+                                className="search-input"
+                            />
+                        </div>
 
-                <ProductList products={smartphonesToShow} />
+                        {state.smartphonesToShow.length === 0 ? (
+                            <div className="not-found-image-container">
+                                <img
+                                    className="not-found-image"
+                                    src={NotFoundImage}
+                                    alt="producto no encontrado"
+                                />
+                            </div>
+                        ) : (
+                            <ProductList products={state.smartphonesToShow} />
+                        )}
+                    </>
+                )}
             </main>
         </>
     );
