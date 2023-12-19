@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
+import { Route, Routes, HashRouter, Navigate } from 'react-router-dom';
 
 import { ToastProvider } from './shared/ui/context/toast-provider';
 import { CartProvider } from './smartphones/ui/context/cart-provider';
@@ -9,7 +9,7 @@ import { SmartphonesProvider } from './smartphones/ui/context/smartphones-provid
 export const App = () => {
     return (
         <CartProvider>
-            <BrowserRouter>
+            <HashRouter hashType="hashbang">
                 <ToastProvider>
                     <SmartphonesProvider>
                         <Routes>
@@ -28,7 +28,7 @@ export const App = () => {
                         </Routes>
                     </SmartphonesProvider>
                 </ToastProvider>
-            </BrowserRouter>
+            </HashRouter>
         </CartProvider>
     );
 };
