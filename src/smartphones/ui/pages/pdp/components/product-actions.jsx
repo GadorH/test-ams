@@ -54,7 +54,7 @@ export const ProductActions = (props) => {
     );
 
     return (
-        <div>
+        <section className="product-options__container">
             <h2 className="product-options__title">Opciones de Producto</h2>
 
             <div className="product-actions__selector-container">
@@ -83,7 +83,7 @@ export const ProductActions = (props) => {
                     {product.price ? 'Añadir al carrito' : 'No disponible'}
                 </button>
             </div>
-        </div>
+        </section>
     );
 };
 

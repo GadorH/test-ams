@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+    position: sticky;
+    top: 127px;
+    z-index: 400;
+    background-color: #fff;
 }
 .search-input {
     padding: 10px;
@@ -12,17 +16,19 @@
     width: 100%;
     margin: 7px 0px;
 }
+@media screen and (min-width: 768px) {
+    .search-input {
+        padding: 8px;
+    }
+}
 
 @media screen and (min-width: 1024px) {
     .search-bar {
-        justify-content: end;
         margin-right: 15px;
+        top: 102px;
     }
     .search-input {
         padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 200px;
-        outline: none;
+        width: 1550px;
     }
 }
