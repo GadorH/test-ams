@@ -6,10 +6,16 @@ import * as smartphonesServices from '../../services/smartphones-services';
 const SmartphonesContext = createContext();
 SmartphonesContext.displayName = 'SmartphonesContext';
 
+export const STATUS_TYPES = {
+    READY: 'READY',
+    FETCHING: 'FETCHING',
+};
+
 export const SmartphonesProvider = ({ children }) => {
     const [state, setState] = useState({
         smartphones: [],
         updatedAt: null,
+        status: STATUS_TYPES.READY,
     });
 
     const retrieveById = (smartphoneId) => {
@@ -19,12 +25,13 @@ export const SmartphonesProvider = ({ children }) => {
 
         const oneHourAgo = Date.now() - 3600000;
         if (smartphone?.details && oneHourAgo < smartphone.updatedAt) {
-            return { abort: () => {} };
+            return { abort: () => {}, service: Promise.resolve() };
         }
 
         const abortController = new AbortController();
+        setState({ ...state, status: STATUS_TYPES.FETCHING });
 
-        smartphonesServices
+        const service = smartphonesServices
             .getProductDetailsService(smartphoneId, {
                 signal: abortController.signal,
             })
@@ -32,6 +39,7 @@ export const SmartphonesProvider = ({ children }) => {
                 if (!smartphone) {
                     setState({
                         ...state,
+                        status: STATUS_TYPES.READY,
                         smartphones: [
                             ...state.smartphones,
                             {
@@ -48,6 +56,7 @@ export const SmartphonesProvider = ({ children }) => {
                 } else {
                     setState({
                         ...state,
+                        status: STATUS_TYPES.READY,
                         smartphones: state.smartphones.map((smartphone) => {
                             if (smartphone.id === id) {
                                 return {
@@ -73,22 +82,26 @@ export const SmartphonesProvider = ({ children }) => {
 
                 throw error;
             });
-        return { abort: () => abortController.abort() };
+
+        return { abort: () => abortController.abort(), service };
     };
 
     const retrieveAll = () => {
         const oneHourAgo = Date.now() - 3600000;
 
         if (state.updatedAt != null && oneHourAgo < state.updatedAt) {
-            return { abort: () => {} };
+            return { abort: () => {}, service: Promise.resolve() };
         }
 
         const abortController = new AbortController();
-        smartphonesServices
+        setState({ ...state, status: STATUS_TYPES.FETCHING });
+
+        const service = smartphonesServices
             .getAllProductsService({ signal: abortController.signal })
             .then((products) => {
                 setState({
                     ...state,
+                    status: STATUS_TYPES.READY,
                     updatedAt: Date.now(),
                     smartphones: products.map(
                         ({ id, brand, model, price, imgUrl }) => {
@@ -117,20 +130,20 @@ export const SmartphonesProvider = ({ children }) => {
                 throw error;
             });
 
-        return { abort: () => abortController.abort() };
+        return { abort: () => abortController.abort(), service };
     };
 
     const contextValue = useMemo(() => {
         return {
             smartphones: state.smartphones,
-            updatedAt: state.updatedAt,
+            status: state.status,
 
             retrieveById: retrieveById,
             retrieveAll: retrieveAll,
         };
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.smartphones]);
+    }, [state.smartphones, state.status]);
 
     return (
         <SmartphonesContext.Provider value={contextValue}>
