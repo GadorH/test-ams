@@ -1,6 +1,8 @@
 import { createContext, useContext, useReducer, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
+import { addProductToCartService } from '../../services/smartphones-services';
+
 const CartContext = createContext();
 CartContext.displayName = 'CartContext';
 
@@ -32,12 +34,12 @@ export const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState, undefined);
 
     const add = (product) => {
-        dispatch({
-            type: ACTION_TYPES.ADD,
-            payload: { product },
+        return addProductToCartService(product).then(() => {
+            dispatch({
+                type: ACTION_TYPES.ADD,
+                payload: { product },
+            });
         });
-
-        return product;
     };
 
     const contextValue = useMemo(() => {

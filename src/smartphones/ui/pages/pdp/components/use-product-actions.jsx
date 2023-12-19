@@ -1,8 +1,11 @@
 import { useState } from 'react';
+
+import { useToastProvider } from '../../../../../shared/ui/context/toast-provider.jsx';
 import { useCartProvider } from '../../../context/cart-provider';
 
 export const useProductActions = ({ product }) => {
     const { add } = useCartProvider();
+    const toast = useToastProvider();
 
     const productStorages = product.details.options.storages;
     const productColors = product.details.options.colors;
@@ -26,7 +29,9 @@ export const useProductActions = ({ product }) => {
             storageCode: selectedOptions.storage,
         };
 
-        add(cartItem);
+        add(cartItem).catch(() => {
+            toast.error('Error añadiendo al carrito');
+        });
     };
 
     return {
