@@ -1,6 +1,6 @@
 # Aplicación de compra de dispositivos móviles
 
-## 📜🖋️ Sumario
+## 📜🖋️ Resumen
 
 Este repositorio alberga una prueba técnica de front-end que se focaliza en el desarrollo de una mini-aplicación destinada a la compra de dispositivos móviles. La aplicación brinda la capacidad de explorar un catálogo de dispositivos móviles, visualizar detalles específicos de cada producto, seleccionar opciones de color y almacenamiento, y agregarlos al carrito de compra. Además, incorpora una práctica barra de búsqueda que permite a los usuarios filtrar productos por modelo y marca.
 
@@ -23,19 +23,35 @@ Asimismo, se incorpora un enlace intuitivo que permite al usuario regresar fáci
 
 5.**API de Datos Externa:** Se integra la API externa (https://itx-frontend-test.onrender.com/) para obtener y gestionar los datos de productos de manera dinámica, permitiendo una experiencia de compra actualizada y en tiempo real.
 
-6.**LocalStorage:** Para la persistencia de datos en cliente, se emplea LocalStorage, almacenando temporalmente la información de productos para mejorar la eficiencia y reducir la dependencia de peticiones innecesarias a la API.
+7.**Cypress:**:Se ha implementado Cypress para llevar a cabo pruebas de extremo a extremo(e2e). Cypress proporciona una plataforma poderosa y fácil de usar para garantizar la calidad y la estabilidad de la aplicación mediante pruebas automatizadas.
+
+_Nota: se ha utilizado Node v18.16.0 durante el desarrollo_
 
 ## 🚀🔥 Puesta a punto y ejecución
 
 1.**Descarga del repositorio:** Primero, clona el repositorio en tu máquina local. Abre la terminal y ejecuta el siguiente comando ``.
-2.**Instalación de Dependencias:** Una vez hayas descargado el repositorio, deberás instalar las dependencias con el siguiente comando `npm install`.
-3.**Inicio en modo desarrollo:** Para iniciar la aplicación en modo desarrollo, deberás introducir el comando `npm start`.
-4.**Compilación para modo producción:** Para la compilación en modo producción, deberás introducir el comando `npm run build`.
-5.**Lanzamiento de Test:** Para correr los test, deberás introducir el comando `npm test`.
-6.**Comprobación de Código(Lint):** Para ello, debes introducir el comando `npm run lint`.
-7.**Configuración variables de entorno:** Dentro del repositorio encontrarás un archivo .env.local.example que deberás renombrar a `.env.local`
 
-## Metología 📈
+2.**Instalación de Dependencias:** Una vez hayas descargado el repositorio, deberás instalar las dependencias con el siguiente comando `npm install`.
+
+3.**Inicio en modo desarrollo:** Para iniciar la aplicación en modo desarrollo, deberás introducir el comando `npm start`.
+
+4.**Compilación para modo producción:** Para la compilación en modo producción, deberás introducir el comando `npm run build`.
+
+5.**Comprobación de Código(Lint):** Para ello, debes introducir el comando `npm run lint`.
+
+6.**Configuración variables de entorno:** Dentro del repositorio encontrarás un archivo .env.local.example que deberás renombrar a `.env.local`.
+
+7.**Ejecución de Pruebas:**
+
+-   **Entorno de Desarrollo:**
+    Para ejecutar las pruebas en el entorno de desarrollo utilizando la interfaz de usuario de Cypress, utiliza el siguiente comando: `npm run cy:open`.
+    Esto abrirá la interfaz de usuario de Cypress, donde podrás seleccionar y ejecutar las pruebas según tus necesidades.
+
+-   **Entorno de Producción (Headless):**
+    Si prefieres ejecutar las pruebas en un entorno de producción sin la interfaz de usuario, puedes utilizar el siguiente comando: `npm run cy:run:headless`.
+    Este comando ejecutará las pruebas de forma headless (sin interfaz gráfica) y proporcionará resultados detallados sobre el estado de la aplicación.
+
+## Metodología 📈
 
 Para la realización de este proyecto se ha mantenido una metodología de trabajo utilizando la herramienta de control de verisones Git, para gestionar las actualizaciones y los commits realizados durante el desarrollo del proyecto. Esto permitió mantener un seguimiento preciso de los cambios.
 
