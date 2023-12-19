@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --port 5173 --host",
-    "build": "vite build",
+    "start": "vite --port 5173 --host --config vite.development.config.js",
+    "build": "vite build --config vite.build.config.js",
     "cy:open": "cypress open",
     "cy:run:headless": "cypress run --headless --spec 'cypress/e2e/smartphones/**/*.js'",
     "lint": "eslint . --ext .js,.jsx",
