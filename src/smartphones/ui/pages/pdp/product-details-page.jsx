@@ -1,36 +1,18 @@
-import { useEffect, useMemo, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRef } from 'react';
 
-import { useSmartphonesProvider } from '../../context/smartphones-provider.jsx';
+import { STATUS_TYPES } from '../../context/smartphones-provider.jsx';
 import { Header } from '../../components/header';
+import LoadingGif from '../../assets/loading.gif';
 import { ProductActions } from './components/product-actions';
+import { useProductDetailsPage } from './use-product-details-page.jsx';
+
 import './product-details-page.css';
 
 export const ProductDetailsPage = () => {
-    const { productId } = useParams();
     const rootRef = useRef(null);
-    const { smartphones, retrieveById } = useSmartphonesProvider();
-    const smartphone = useMemo(() => {
-        return smartphones.find((smartphone) => smartphone.id === productId);
-    }, [productId, smartphones]);
+    const { state } = useProductDetailsPage({ rootRef });
 
-    useEffect(() => {
-        const { abort } = retrieveById(productId);
-
-        return () => {
-            abort();
-        };
-    }, [productId, retrieveById]);
-
-    useEffect(() => {
-        if (rootRef.current) {
-            window.scrollTo({
-                top: rootRef.current.getBoundingClientRect().top,
-            });
-        }
-    }, []);
-
-    const renderDetailListItems = (details) => {
+    const renderDetailListItems = () => {
         const detailMappings = {
             cpu: 'CPU',
             ram: 'RAM',
@@ -45,7 +27,7 @@ export const ProductDetailsPage = () => {
         return (
             <ul className="product-details__list">
                 {Object.entries(detailMappings).map(([key, title]) => {
-                    let value = details[key];
+                    let value = state.smartphone.details[key];
 
                     if (key === 'primaryCamera' && Array.isArray(value)) {
                         value = value.join(', ');
@@ -70,32 +52,44 @@ export const ProductDetailsPage = () => {
     return (
         <div ref={rootRef}>
             <Header />
-            <main className="details-container">
-                {smartphone?.details && (
-                    <>
-                        <div className="image-container">
-                            <img
-                                src={smartphone.imgUrl}
-                                alt={smartphone.model}
-                            />
-                        </div>
+            {state.status === STATUS_TYPES.FETCHING ? (
+                <div className="loader">
+                    <img
+                        className="loader__img"
+                        src={LoadingGif}
+                        role="presentation"
+                    />
+                    <p>Estamos obteniendo los patos, digo los datos...</p>
+                </div>
+            ) : (
+                <main className="details-container">
+                    {state.smartphone?.details && (
+                        <>
+                            <div className="image-container">
+                                <img
+                                    src={state.smartphone.imgUrl}
+                                    alt={state.smartphone.model}
+                                />
+                            </div>
 
-                        <section className="description-container">
-                            <h2 className="description-container__product-title">
-                                {smartphone.brand} {smartphone.model}
-                            </h2>
-                            <h2 className="description-container__product-details">
-                                Detalles del producto
-                            </h2>
+                            <section className="description-container">
+                                <h2 className="description-container__product-title">
+                                    {state.smartphone.brand}{' '}
+                                    {state.smartphone.model}
+                                </h2>
+                                <h2 className="description-container__product-details">
+                                    Detalles del producto
+                                </h2>
 
-                            {smartphone?.details &&
-                                renderDetailListItems(smartphone.details)}
-                        </section>
+                                {state.smartphone?.details &&
+                                    renderDetailListItems()}
+                            </section>
 
-                        <ProductActions product={smartphone} />
-                    </>
-                )}
-            </main>
+                            <ProductActions product={state.smartphone} />
+                        </>
+                    )}
+                </main>
+            )}
         </div>
     );
 };

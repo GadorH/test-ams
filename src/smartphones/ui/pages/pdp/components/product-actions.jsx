@@ -1,45 +1,21 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useProductActions } from './use-product-actions';
 
-import { useCartProvider } from '../../../context/cart-provider';
 import './product-actions.css';
 
 export const ProductActions = (props) => {
     const { product } = props;
-    const { add } = useCartProvider();
-
-    const productStorages = product.details.options.storages;
-    const productColors = product.details.options.colors;
-
-    const [selectedOptions, setSelectedOptions] = useState({
-        storage: productStorages[0].code,
-        color: productColors[0].code,
-    });
-
-    const handleOptionChange = (optionType, value) => {
-        setSelectedOptions((prevOptions) => ({
-            ...prevOptions,
-            [optionType]: value,
-        }));
-    };
-
-    const handleAddToCart = () => {
-        const cartItem = {
-            id: product.id,
-            colorCode: selectedOptions.color,
-            storageCode: selectedOptions.storage,
-        };
-
-        add(cartItem);
-    };
+    const { state, actions } = useProductActions({ product });
 
     const renderSelector = (label, options, optionType) => (
         <label className="product-actions__selector-label" key={optionType}>
             {label}:
             <select
                 className="product-actions__selector-input"
-                value={selectedOptions[optionType]}
-                onChange={(e) => handleOptionChange(optionType, e.target.value)}
+                value={state.selectedOptions[optionType]}
+                onChange={(e) =>
+                    actions.handleOptionChange(optionType, e.target.value)
+                }
             >
                 <option value={`default${optionType}Option`} disabled>
                     Selecciona {label}
@@ -61,12 +37,12 @@ export const ProductActions = (props) => {
                 {product.details.options &&
                     renderSelector(
                         'Almacenamiento',
-                        productStorages,
+                        state.productStorages,
                         'storage'
                     )}
 
                 {product.details.options &&
-                    renderSelector('Color', productColors, 'color')}
+                    renderSelector('Color', state.productColors, 'color')}
             </div>
 
             <div className="button-container">
@@ -77,7 +53,7 @@ export const ProductActions = (props) => {
                 )}
                 <button
                     className="product-actions__add-to-cart-button"
-                    onClick={handleAddToCart}
+                    onClick={actions.handleAddToCart}
                     disabled={!product.price}
                 >
                     {product.price ? 'Añadir al carrito' : 'No disponible'}
