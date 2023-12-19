@@ -33,6 +33,7 @@ export const useProductDetailsPage = ({ rootRef }) => {
                 top: rootRef.current.getBoundingClientRect().top,
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return {

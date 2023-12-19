@@ -6,6 +6,7 @@ import * as smartphonesServices from '../../services/smartphones-services';
 const SmartphonesContext = createContext();
 SmartphonesContext.displayName = 'SmartphonesContext';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const STATUS_TYPES = {
     READY: 'READY',
     FETCHING: 'FETCHING',
@@ -156,6 +157,7 @@ SmartphonesProvider.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSmartphonesProvider = () => {
     const context = useContext(SmartphonesContext);
 
