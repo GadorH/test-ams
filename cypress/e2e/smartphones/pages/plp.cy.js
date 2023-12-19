@@ -1,6 +1,6 @@
 describe('Smartphones PLP', () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5173/smartphones');
+        cy.visit('http://localhost:5173/smartphones');
     });
 
     it('should display products', () => {
@@ -32,7 +32,7 @@ describe('Smartphones PLP', () => {
     it('should show breadcrumb', () => {
         cy.get('.header__row-breadcrumb').should('exist');
         cy.get('.header__row-breadcrumb').should('contain', 'Smartphones');
-    })
+    });
 
     it('navigate to PDP on product click', () => {
         cy.get('[href="/smartphones/ZmGrkLRPXOTpxsU4jjAcv"]').click();
