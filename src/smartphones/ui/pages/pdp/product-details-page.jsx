@@ -25,7 +25,10 @@ export const ProductDetailsPage = () => {
         };
 
         return (
-            <ul className="product-details__list">
+            <ul
+                data-cy-id="product-details__list"
+                className="product-details__list"
+            >
                 {Object.entries(detailMappings).map(([key, title]) => {
                     let value = state.smartphone.details[key];
 
@@ -38,6 +41,7 @@ export const ProductDetailsPage = () => {
                             <li
                                 key={key}
                                 className="product-details__list-item"
+                                data-cy-id={key}
                             >
                                 <span className="detail-key">{title}:</span>{' '}
                                 {value}
@@ -62,11 +66,15 @@ export const ProductDetailsPage = () => {
                                 <img
                                     src={state.smartphone.imgUrl}
                                     alt={state.smartphone.model}
+                                    data-cy-id={`${state.smartphone.id}-img`}
                                 />
                             </div>
 
                             <section className="description-container">
-                                <h2 className="description-container__product-title">
+                                <h2
+                                    data-cy-id={`${state.smartphone.id}-brand-model`}
+                                    className="description-container__product-title"
+                                >
                                     {`${state.smartphone.brand} ${state.smartphone.model}`}
                                 </h2>
                                 <h2 className="description-container__product-details">

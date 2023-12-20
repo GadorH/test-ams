@@ -30,6 +30,7 @@ export const Header = () => {
                         className="header__row-link"
                         to="/smartphones"
                         aria-current={productId ? null : 'page'}
+                        data-cy-id="header-title"
                     >
                         TEST FRONT-END
                     </Link>
@@ -37,7 +38,9 @@ export const Header = () => {
                 <div className="header__cart-container">
                     <CartIcon className="header__cart-icon" />
 
-                    <div className="badge">{cart.length}</div>
+                    <div className="badge" data-cy-id="cart-badge">
+                        {cart.length}
+                    </div>
                 </div>
             </div>
 
@@ -53,6 +56,7 @@ export const Header = () => {
                                 className="header__row-link"
                                 to="/smartphones"
                                 aria-current={productId ? null : 'page'}
+                                data-cy-id="header__row-link"
                             >
                                 Smartphones
                             </Link>

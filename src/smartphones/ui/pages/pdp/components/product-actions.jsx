@@ -11,6 +11,7 @@ export const ProductActions = (props) => {
         <label className="product-actions__selector-label" key={optionType}>
             {label}:
             <select
+                data-cy-id={optionType}
                 className="product-actions__selector-input"
                 value={state.selectedOptions[optionType]}
                 onChange={(e) =>
@@ -30,7 +31,10 @@ export const ProductActions = (props) => {
     );
 
     return (
-        <section className="product-options__container">
+        <section
+            data-cy-id="product-options__container"
+            className="product-options__container"
+        >
             <h2 className="product-options__title">Opciones de Producto</h2>
 
             <div className="product-actions__selector-container">
@@ -48,13 +52,19 @@ export const ProductActions = (props) => {
             <div className="button-container">
                 {product.price && (
                     <span>
-                        <h3 className="price-text">{product.price} €</h3>
+                        <h3
+                            data-cy-id={`${product.id}-price`}
+                            className="price-text"
+                        >
+                            {product.price} €
+                        </h3>
                     </span>
                 )}
                 <button
                     className="product-actions__add-to-cart-button"
                     onClick={actions.handleAddToCart}
                     disabled={!product.price}
+                    data-cy-id="cart-button"
                 >
                     {product.price ? 'Añadir al carrito' : 'No disponible'}
                 </button>

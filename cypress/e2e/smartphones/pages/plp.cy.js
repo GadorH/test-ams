@@ -1,16 +1,16 @@
 describe('Smartphones PLP', () => {
-    beforeEach(() => {
-        cy.visit('http://localhost:5173/#/smartphones');
-    });
-
-    it('should display products', () => {
-        cy.intercept(
+    beforeEach(async () => {
+        await cy.intercept(
             'GET',
             'https://itx-frontend-test.onrender.com/api/product',
             {
                 fixture: 'smartphones.json',
             }
         );
+        cy.visit('http://localhost:5173/#/smartphones');
+    });
+
+    it('should display products', () => {
         cy.get('[data-cy-id="ZmGrkLRPXOTpxsU4jjAcv"]').should('exist');
         cy.get('[data-cy-id="ZmGrkLRPXOTpxsU4jjAcv-img"]').should('exist');
         cy.get('[data-cy-id="ZmGrkLRPXOTpxsU4jjAcv-brand"]').should('exist');

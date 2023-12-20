@@ -22,7 +22,7 @@ export const ProductListPage = () => {
                             <input
                                 type="text"
                                 data-cy-id="search-input"
-                                placeholder="Buscar"
+                                placeholder="Buscar marca / modelo"
                                 value={state.searchTerm}
                                 onChange={actions.handleSearch}
                                 className="search-input"
