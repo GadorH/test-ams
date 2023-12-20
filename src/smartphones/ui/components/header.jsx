@@ -57,8 +57,7 @@ export const Header = () => {
                         </li>
                         {productId && (
                             <li>
-                                {' '}
-                                &gt;{' '}
+                                <span className="breadcrumb__arrow">&gt;</span>
                                 <Link
                                     to={`/smartphones/${productId}`}
                                     aria-current="page"

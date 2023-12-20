@@ -1,6 +1,6 @@
 import { STATUS_TYPES } from '../../context/smartphones-provider.jsx';
 import { Header } from '../../components/header';
-import LoadingGif from '../../assets/loading.gif';
+import { Loader } from '../../components/loader.jsx';
 import NotFoundImage from '../../assets/no-product.png';
 import { ProductList } from './components/product-list';
 import { useProductListPage } from './use-product-list-page.jsx';
@@ -15,14 +15,7 @@ export const ProductListPage = () => {
             <Header />
             <main>
                 {state.status === STATUS_TYPES.FETCHING ? (
-                    <div className="loader">
-                        <img
-                            className="loader__image"
-                            src={LoadingGif}
-                            role="presentation"
-                        />
-                        <p>Estamos obteniendo los patos, digo los datos...</p>
-                    </div>
+                    <Loader />
                 ) : (
                     <>
                         <div className="search-bar">

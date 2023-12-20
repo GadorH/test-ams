@@ -6,14 +6,14 @@ export const ProductList = (props) => {
     const { products } = props;
 
     return (
-        <div className="item-container">
+        <ul className="item-list">
             {products.map((product) => (
-                <Link
-                    to={`${product.id}`}
-                    key={product.id}
-                    data-cy-id={product.id}
-                >
-                    <div key={product.id} className="item-card">
+                <li key={product.id} className="item-card">
+                    <Link
+                        to={`${product.id}`}
+                        data-cy-id={product.id}
+                        className="item-link"
+                    >
                         <img
                             loading="lazy"
                             src={product.imgUrl}
@@ -34,10 +34,10 @@ export const ProductList = (props) => {
                                 ? `${product.price} €`
                                 : 'No Disponible'}
                         </p>
-                    </div>
-                </Link>
+                    </Link>
+                </li>
             ))}
-        </div>
+        </ul>
     );
 };
 

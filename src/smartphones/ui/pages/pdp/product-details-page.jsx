@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import { STATUS_TYPES } from '../../context/smartphones-provider.jsx';
 import { Header } from '../../components/header';
-import LoadingGif from '../../assets/loading.gif';
+import { Loader } from '../../components/loader.jsx';
 import { ProductActions } from './components/product-actions';
 import { useProductDetailsPage } from './use-product-details-page.jsx';
 
@@ -53,14 +53,7 @@ export const ProductDetailsPage = () => {
         <div ref={rootRef}>
             <Header />
             {state.status === STATUS_TYPES.FETCHING ? (
-                <div className="loader">
-                    <img
-                        className="loader__img"
-                        src={LoadingGif}
-                        role="presentation"
-                    />
-                    <p>Estamos obteniendo los patos, digo los datos...</p>
-                </div>
+                <Loader />
             ) : (
                 <main className="details-container">
                     {state.smartphone?.details && (
@@ -74,8 +67,7 @@ export const ProductDetailsPage = () => {
 
                             <section className="description-container">
                                 <h2 className="description-container__product-title">
-                                    {state.smartphone.brand}{' '}
-                                    {state.smartphone.model}
+                                    {`${state.smartphone.brand} ${state.smartphone.model}`}
                                 </h2>
                                 <h2 className="description-container__product-details">
                                     Detalles del producto

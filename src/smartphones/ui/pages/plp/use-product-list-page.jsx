@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { useToastProvider } from '../../../../shared/ui/context/toast-provider.jsx';
-import { useSmartphonesProvider } from '../../context/smartphones-provider.jsx';
+import { useToastProvider } from '../../../../shared/ui/context/toast-provider';
+import { useSmartphonesProvider } from '../../context/smartphones-provider';
 
 export const useProductListPage = () => {
     const [searchTerm, setSearchTerm] = useState('');

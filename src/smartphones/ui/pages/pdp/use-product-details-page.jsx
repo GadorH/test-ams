@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { useToastProvider } from '../../../../shared/ui/context/toast-provider.jsx';
-import { useSmartphonesProvider } from '../../context/smartphones-provider.jsx';
+import { useToastProvider } from '../../../../shared/ui/context/toast-provider';
+import { useSmartphonesProvider } from '../../context/smartphones-provider';
 
 export const useProductDetailsPage = ({ rootRef }) => {
     const { productId } = useParams();
