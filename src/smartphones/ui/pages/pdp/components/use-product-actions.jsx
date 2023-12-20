@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useToastProvider } from '../../../../../shared/ui/context/toast-provider.jsx';
-import { useCartProvider } from '../../../context/cart-provider';
+import { useCartProvider } from '../../../../../shared/ui/context/cart-provider.jsx';
 
 export const useProductActions = ({ product }) => {
     const { add } = useCartProvider();

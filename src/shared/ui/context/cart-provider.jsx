@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { addProductToCartService } from '../../services/smartphones-services';
+import { addProductToCartService } from '../../../smartphones/services/smartphones-services';
 
 const CartContext = createContext();
 CartContext.displayName = 'CartContext';

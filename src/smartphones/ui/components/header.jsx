@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { useCartProvider } from '../context/cart-provider';
+import { useCartProvider } from '../../../shared/ui/context/cart-provider';
 import { useSmartphonesProvider } from '../context/smartphones-provider';
 import CartIcon from './assets/shopping-cart.svg?react';
 
