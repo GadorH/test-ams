@@ -43,6 +43,8 @@ _Nota: se ha utilizado Node v18.16.0 durante el desarrollo_
 
 7.**Ejecución de Pruebas:** puedes llevar a cabo las pruebas en el navegador con el comando `cy:open` o en el navegador headless `cy:run:headless`.
 
+_Nota: es importante arrancar el proyecto antes de correr los tests._
+
 ## Metodología 📈
 
 Para la realización de este proyecto se ha mantenido una metodología de trabajo utilizando la herramienta de control de verisones Git, para gestionar las actualizaciones y los commits realizados durante el desarrollo del proyecto. Esto permitió mantener un seguimiento preciso de los cambios.

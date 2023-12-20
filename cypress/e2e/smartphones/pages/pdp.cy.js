@@ -56,7 +56,10 @@ describe('Smartphones PDP', () => {
     it('should add product to cart', async () => {
         await cy.intercept(
             'POST',
-            'https://itx-frontend-test.onrender.com/api/cart'
+            'https://itx-frontend-test.onrender.com/api/cart',
+            {
+                fixture: 'cart.json',
+            }
         );
         cy.get('[data-cy-id="cart-button"]').click();
         cy.get('[data-cy-id="cart-badge"]').should('contain', '1');
