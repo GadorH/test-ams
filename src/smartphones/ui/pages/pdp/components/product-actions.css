@@ -92,7 +92,7 @@
     .button-container {
         margin-top: 25px;
         width: 100%;
-        position: sticky;
+        position: static;
         box-shadow: none;
         padding: 0;
     }

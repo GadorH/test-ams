@@ -15,20 +15,20 @@
     height: 50px;
     padding: 15px;
 }
-.header__row a {
+.header__row-link {
     text-decoration: none;
     color: inherit;
 }
 .header__row-breadcrumb {
     padding: 15px;
 }
-.header__row-breadcrumb a {
-    text-decoration: none;
-    color: inherit;
-}
-.header__row-breadcrumb li {
-    display: inline-block;
+
+.header__row-breadcrumb-list {
+    display: flex;
     margin-right: 5px;
+}
+.breadcrumb__arrow {
+    margin: 0 5px;
 }
 .header__cart-container {
     position: relative;

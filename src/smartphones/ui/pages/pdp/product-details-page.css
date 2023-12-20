@@ -24,16 +24,6 @@
 .detail-key {
     font-weight: bold;
 }
-.loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
-}
-.loader__img {
-    width: 100px;
-}
 
 @media screen and (min-width: 1024px) {
     .details-container {
@@ -52,11 +42,5 @@
     }
     .description-container__product-title {
         text-align: inherit;
-    }
-    .loader {
-        height: 70vh;
-    }
-    .loader__img {
-        width: 150px;
     }
 }

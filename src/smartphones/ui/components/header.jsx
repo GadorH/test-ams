@@ -27,6 +27,7 @@ export const Header = () => {
             <div className="header__row">
                 <h2>
                     <Link
+                        className="header__row-link"
                         to="/smartphones"
                         aria-current={productId ? null : 'page'}
                     >
@@ -46,9 +47,10 @@ export const Header = () => {
                     className="header__breadcrumb"
                     data-cy-id="breadcrumb"
                 >
-                    <ol>
+                    <ol className="header__row-breadcrumb-list">
                         <li>
                             <Link
+                                className="header__row-link"
                                 to="/smartphones"
                                 aria-current={productId ? null : 'page'}
                             >
@@ -59,6 +61,7 @@ export const Header = () => {
                             <li>
                                 <span className="breadcrumb__arrow">&gt;</span>
                                 <Link
+                                    className="header__row-link"
                                     to={`/smartphones/${productId}`}
                                     aria-current="page"
                                 >

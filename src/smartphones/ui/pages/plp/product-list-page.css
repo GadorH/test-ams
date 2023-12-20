@@ -15,16 +15,7 @@
     outline: none;
     width: 100%;
     margin: 7px 0px;
-}
-.loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
-}
-.loader__image {
-    width: 150px;
+    font-size: 16px;
 }
 
 .not-found-image-container {
@@ -53,12 +44,7 @@
         padding: 8px;
         width: 1550px;
     }
-    .loader {
-        height: 70vh;
-    }
-    .loader__image {
-        width: 150px;
-    }
+
     .not-found-image-container {
         height: 60vh;
     }
