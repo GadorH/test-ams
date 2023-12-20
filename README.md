@@ -29,7 +29,7 @@ _Nota: se ha utilizado Node v18.16.0 durante el desarrollo_
 
 ## 🚀🔥 Puesta a punto y ejecución
 
-1.**Descarga del repositorio:** Primero, clona el repositorio en tu máquina local. Abre la terminal y ejecuta el siguiente comando ``.
+1.**Descarga del repositorio:** Primero, clona el repositorio en tu máquina local. Abre la terminal y ejecuta el siguiente comando `git clone https://github.com/GadorH/test-ams.git`.
 
 2.**Instalación de Dependencias:** Una vez hayas descargado el repositorio, deberás instalar las dependencias con el siguiente comando `npm install`.
 
@@ -39,36 +39,12 @@ _Nota: se ha utilizado Node v18.16.0 durante el desarrollo_
 
 5.**Comprobación de Código(Lint):** Para ello, debes introducir el comando `npm run lint`.
 
-6.**Configuración variables de entorno:** Dentro del repositorio encontrarás un archivo .env.local.example que deberás renombrar a `.env.local`.
+6.**Configuración variables de entorno:** Dentro del repositorio encontrarás un archivo `.env.local.example` que deberás renombrar a `.env.local`.
 
-7.**Ejecución de Pruebas:**
-
--   **Entorno de Desarrollo:**
-    Para ejecutar las pruebas en el entorno de desarrollo utilizando la interfaz de usuario de Cypress, utiliza el siguiente comando: `npm run cy:open`.
-    Esto abrirá la interfaz de usuario de Cypress, donde podrás seleccionar y ejecutar las pruebas según tus necesidades.
-
--   **Entorno de Producción (Headless):**
-    Si prefieres ejecutar las pruebas en un entorno de producción sin la interfaz de usuario, puedes utilizar el siguiente comando: `npm run cy:run:headless`.
-    Este comando ejecutará las pruebas de forma headless (sin interfaz gráfica) y proporcionará resultados detallados sobre el estado de la aplicación.
+7.**Ejecución de Pruebas:** puedes llevar a cabo las pruebas en el navegador con el comando `cy:open` o en el navegador headless `cy:run:headless`.
 
 ## Metodología 📈
 
 Para la realización de este proyecto se ha mantenido una metodología de trabajo utilizando la herramienta de control de verisones Git, para gestionar las actualizaciones y los commits realizados durante el desarrollo del proyecto. Esto permitió mantener un seguimiento preciso de los cambios.
 
-Una de las prácticas clave fue el uso de conventionals commits, específicamente los Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0/). Esta convención me ayudó a mantener un historial de commits consistente y bien estructurado, facilitando la comprensión de los cambios realizados en el proyecto.
-
-## Autor 🖋
-
-<table>
-<tbody>
-<tr>
-<td align="center">
-<a href="https://github.com/GadorH" rel="nofollow">
-<img src="https://github.com/GadorH.png" width="100px;" alt="" style="max-width: 100%;">
-<br>
-<sub><b>Gádor Heras</b></sub>
-</a>
-</td>
-</tr>
-</tbody>
-</table>
+Una de las prácticas clave fue el uso de Conventional Commits, (https://www.conventionalcommits.org/en/v1.0.0/). Esta convención me ayudó a mantener un historial de commits consistente y bien estructurado, facilitando la comprensión de los cambios realizados en el proyecto.
